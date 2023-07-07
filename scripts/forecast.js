@@ -1,30 +1,35 @@
-const accuKey = "	ZNu9G2VwpHDDFnNtX3mhDbF1fm04E2uz";
+const accuKey = "	2I9eStCQIYa53aoK3J9bGoZ3AAeLwCi7";
 
-////manuel cityinput
-// const cityinput = "bolu";
+//manuel cityInput
+// const cityInput = "antalya";
 
-const getCurrent = async (dataKey) => {
+//// getting the  current weather
+const getCurrent = async (id) => {
   const base = "http://dataservice.accuweather.com/currentconditions/v1/";
-  const query = `${dataKey}?apikey=${accuKey}`;
+  const query = `${id}?apikey=${accuKey}`;
 
-  const response = await fetch(base + query);
-  const data = await response.json();
+  const Response = await fetch(base + query);
+  const data = await Response.json();
+
+  // console.log(data);
+
   return data[0];
 };
 
-const getCity = async (cityinput) => {
+//fetching and returning the city details for weather
+const getCity = async (cityInput) => {
   const base = "http://dataservice.accuweather.com/locations/v1/cities/search";
-  const query = `?apikey=${accuKey}&q=${cityinput}`;
+  const query = `?apikey=${accuKey}&q=${cityInput}`;
 
-  const response = await fetch(base + query);
-  const data = await response.json();
+  const Response = await fetch(base + query);
+  const data = await Response.json();
+
   return data[0];
 };
 
-//////////manuel getCity & getCurrent
+////manuel city input and getting the city detail, than current weather details
 // getCity()
 //   .then((data) => {
-//     console.log(data);
 //     return getCurrent(data.Key);
 //   })
 //   .then((data) => console.log(data))
